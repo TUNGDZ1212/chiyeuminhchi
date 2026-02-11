@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDK</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .img-love {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            font-weight: bold;
+        }
+
+        #noBtn {
+            background-color: #adb5bd;
+            color: white;
+        }
+
+        #success-msg {
+            display: none;
+        }
+
+        #success-msg h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="quiz">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYybmNidW94bm93am9xdm9vYm13eGZ4bm93am9xdm9vYm13eGZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/57Y9pOL6pSgg96Dzx8/giphy.gif" alt="cute heart" class="img-love">
+            <h1 id="question">Cậu làm người yêu em đê ❤️</h1>
+            <div class="buttons">
+                <button id="yesBtn">Đồng ý</button>
+                <button id="noBtn">Không</button>
+            </div>
+        </div>
+
+        <div id="success-msg">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0am0xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4mZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PXM/KzM1lAfJpx3o3Y2pJX/giphy.gif" alt="celebrate" class="img-love">
+            <h1>Yêu elmmmmmmmmmm nhất! 🥰</h1>
+
+        </div>
+    </div>
+
+    <script>
+        const question = document.getElementById('question');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const quiz = document.getElementById('quiz');
+const successMsg = document.getElementById('success-msg');
+
+const phrases = [
+   "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại",
+            "Lại sai rồi làm lại"
+];
+
+let count = 0;
+let yesSize = 1.1;
+
+noBtn.addEventListener('click', () => {
+    if (count < phrases.length) {
+        question.innerText = phrases[count];
+    } else {
+        question.innerText = "Cj ko thoát đc đâu";
+    }
+
+    count++;
+    yesSize += 0.5; 
+    yesBtn.style.fontSize = yesSize + "rem";
+    yesBtn.style.padding = (12 + count * 5) + "px " + (25 + count * 10) + "px";
+    
+    let noSize = 1.1 - (count * 0.1);
+    if (noSize > 0.5) {
+        noBtn.style.fontSize = noSize + "rem";
+    }
+});
+
+yesBtn.addEventListener('click', () => {
+    // 1. Tự động Copy dòng chữ vào bộ nhớ tạm
+    const message = "Cj đồg ý!";
+    navigator.clipboard.writeText(message).then(() => {
+        console.log("Đã copy thành công!");
+    });
+
+    // 2. Hiển thị thông báo thành công
+    quiz.style.display = 'none';
+    successMsg.innerHTML = `
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0am0xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4xaG4mZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PXM/KzM1lAfJpx3o3Y2pJX/giphy.gif" alt="celebrate" class="img-love">
+        <h1>Yêu elm nhất! 🥰</h1>
+        <p>TT đợi e xíuuuuu</p>
+    `;
+    successMsg.style.display = 'block';
+    document.body.style.backgroundColor = "#ffccd5";
+
+    // 3. Chuyển sang Messenger sau 3 giây
+    setTimeout(() => {
+        // Sử dụng link m.me để mở thẳng khung chat Messenger cho nhanh
+        // Thay 'YourFacebookID' bằng ID hoặc Username Facebook của bạn
+        window.location.href = "https://www.facebook.com/messages/e2ee/t/684218757633563"; 
+    }, 1000);
+});
+    </script>
+</body>
+</html>
